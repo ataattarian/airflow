@@ -73,10 +73,10 @@ x-airflow-common:
     # for other purpose (development, test and especially production usage) build/extend Airflow image.
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
   volumes:
-    - ./dags:/opt/airflow/dags
-    - ./logs:/opt/airflow/logs
-    - ./config:/opt/airflow/config
-    - ./plugins:/opt/airflow/plugins
+    - ${AIRFLOW_PROJ_DIR:-.}/dags:/opt/airflow/dags
+    - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs
+    - ${AIRFLOW_PROJ_DIR:-.}/config:/opt/airflow/config
+    - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
     - /var/run/docker.sock:/var/run/docker.sock
   user: "${AIRFLOW_UID:-50000}:0"
   # depends_on:
@@ -101,6 +101,10 @@ services:
       retries: 5
       start_period: 5s
     restart: always
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [ node.role == manager ]
 
   redis:
     image: redis:latest
@@ -113,6 +117,10 @@ services:
       retries: 50
       start_period: 30s
     restart: always
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [ node.role == manager ]
 
   airflow-webserver:
     <<: *airflow-common
@@ -126,6 +134,10 @@ services:
       retries: 5
       start_period: 30s
     restart: always
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [ node.role == manager ]
     # depends_on:
     #   <<: *airflow-common-depends-on
     #   airflow-init:
@@ -141,6 +153,10 @@ services:
       retries: 5
       start_period: 30s
     restart: always
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [ node.role == manager ]
     # depends_on:
     #   <<: *airflow-common-depends-on
     #   airflow-init:
@@ -164,6 +180,10 @@ services:
       # See https://airflow.apache.org/docs/docker-stack/entrypoint.html#signal-propagation
       DUMB_INIT_SETSID: "0"
     restart: always
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [ node.role == manager ]
     # depends_on:
     #   <<: *airflow-common-depends-on
     #   airflow-init:
@@ -179,6 +199,10 @@ services:
       retries: 5
       start_period: 30s
     restart: always
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [ node.role == manager ]
     # depends_on:
     #   <<: *airflow-common-depends-on
     #   airflow-init:
