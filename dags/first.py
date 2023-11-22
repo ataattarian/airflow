@@ -42,7 +42,7 @@ with DAG(
 ) as dag:
     t1 = DockerSwarmOperator(
         api_version='auto',                
-        command='/bin/sleep 45',           
+        command='echo hello ny name is ata',           
         image='192.168.12.50:5000/web',             
         auto_remove=True,                  
         task_id='sleep_with_swarm',        
