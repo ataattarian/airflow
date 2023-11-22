@@ -44,6 +44,8 @@ with DAG(
         api_version='auto',                
         command='echo hello ny name is ata',           
         image='192.168.12.50:5000/web',             
-        auto_remove=True,                  
+        auto_remove=True,
+        enable_logging=True,
+        docker_url="unix://var/run/docker.sock",                  
         task_id='sleep_with_swarm',        
     )
