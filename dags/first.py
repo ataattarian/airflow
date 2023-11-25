@@ -46,6 +46,6 @@ with DAG(
         image='192.168.12.50:5000/web',             
         auto_remove=True,
         enable_logging=True,
-        docker_url="tcp://192.168.12.50:5000",                  
+        docker_url="tcp://192.168.12.50:2377",                  
         task_id='sleep_with_swarm',        
     )
