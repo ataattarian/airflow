@@ -12,7 +12,7 @@ default_args = {
 }
 
 dag = DAG(
-    'docker_swarm_example',
+    'dockertesttttt',
     default_args=default_args,
     description='A DAG to deploy a Docker service on Swarm',
     schedule_interval=timedelta(days=1),
