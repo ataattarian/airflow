@@ -39,7 +39,7 @@ deploy_service_task = DockerSwarmOperator(
     api_version='auto',
     auto_remove=True,
     command='echo hello my name is ata',
-    docker_url='tcp://192.168.12.50:2377',
+    docker_url='unix://var/run/docker.sock',
     network_mode='bridge',
     dag=dag,
 )
