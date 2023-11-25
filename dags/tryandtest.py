@@ -39,9 +39,8 @@ deploy_service_task = DockerSwarmOperator(
     api_version='auto',
     auto_remove=True,
     command='echo hello my name is ata',
-    docker_conn_id='swarm',
     network_mode='bridge',
-    
+    tty=True,
     dag=dag,
 )
 
