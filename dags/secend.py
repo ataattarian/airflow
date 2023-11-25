@@ -23,12 +23,12 @@ dag = DAG(
 # Define the task using DockerSwarmOperator
 deploy_service_task = DockerSwarmOperator(
     task_id='deploy_service',
-    image='your-docker-image:latest',  # Replace with your actual Docker image
+    image='192.168.12.50:5000/web:latest',  # Replace with your actual Docker image
     api_version='auto',  # You can specify the Docker API version if needed
     auto_remove=True,  # Remove the container once the task is finished
-    command='your-docker-command',  # Replace with your actual Docker command
-    constraints=['node.role==worker'],  # You can add constraints if needed
+    command='echo hello',  # Replace with your actual Docker command
     dag=dag,
+    network_mode='bridge'
 )
 
 # Set the task dependencies (if any)
