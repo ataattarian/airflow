@@ -2,7 +2,6 @@ from datetime import datetime,timedelta
 from airflow import DAG
 from airflow.operators.docker_swarm_operator import DockerSwarmOperator
 
-
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
