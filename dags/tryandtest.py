@@ -36,10 +36,10 @@ check_docker_task = PythonOperator(
 deploy_service_task = DockerSwarmOperator(
     task_id='deploy_service',
     image='192.168.12.50:5000/web:latest',
-    api_version='auto',
+    api_version='1.43',
     auto_remove=True,
     command='echo hello my name is ata',
-    docker_url='unix://var/run/docker.sock',
+    docker_url='tcp://192.168.12.50:2377',
     network_mode='bridge',
     dag=dag,
 )
